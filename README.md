@@ -1,4 +1,4 @@
-# kn-report-ex
+# JL-ERP-System
 
 물류창고 레포트 포트폴리오. 현재 설치된 런타임은 Next.js와 TypeScript이다. 화면은 헤더, 빈 본문, 풋으로 된 셸이다.
 

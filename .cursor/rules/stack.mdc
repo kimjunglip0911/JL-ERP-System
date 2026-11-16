@@ -1,11 +1,11 @@
 ---
-description: kn-report-ex는 Next.js 16.4.5와 TypeScript 7.0.2만 쓰는 포트폴리오다. Git 원격은 SSH origin이고 브랜치는 master 하나다.
+description: JL-ERP-System은 Next.js 16.4.5와 TypeScript 7.0.2만 쓰는 포트폴리오다. Git 원격은 SSH origin이고 브랜치는 master 하나다.
 alwaysApply: true
 ---
 
-# kn-report-ex 스택
+# JL-ERP-System 스택
 
-이 폴더는 물류창고 레포트 포트폴리오다. 상위 `03.testdev/.cursor/rules`는 운영용 KN REPORT(FastAPI, MOCA DB, 포트 8059/8020)용이다. 그 규칙을 이 저장소 작업에 적용하지 않고, 그 파일도 수정하지 않는다.
+이 폴더의 이름은 `JL-ERP-System`이다. 물류창고 레포트 포트폴리오다. 상위 `03.testdev/.cursor/rules`는 운영용 KN REPORT(FastAPI, MOCA DB, 포트 8059/8020)용이다. 그 규칙을 이 저장소 작업에 적용하지 않고, 그 파일도 수정하지 않는다.
 
 ## 사용
 
