@@ -1,6 +1,6 @@
 # JL-ERP-System
 
-물류창고 레포트 포트폴리오. 현재 설치된 런타임은 Next.js와 TypeScript이다. 화면은 헤더, 빈 본문, 풋으로 된 셸이다.
+물류창고 레포트 포트폴리오. 현재 설치된 런타임은 Next.js와 TypeScript이다. 화면은 헤더, 본문, 풋으로 된 셸이다. 헤더 왼쪽 메뉴에서 업무 화면으로 이동한다.
 
 ## 목적
 
@@ -16,7 +16,7 @@ npm run dev
 
 `npm run typecheck`는 `tsc --noEmit`이다. 통과하면 출력이 없고 종료 코드는 0이다.
 
-`npm run dev`는 셸을 연다. 주소는 터미널에 출력된 로컬 주소다. `/`가 그 셸이다.
+`npm run dev`는 셸을 연다. 주소는 터미널에 출력된 로컬 주소다. `/`가 그 셸이다. 메뉴 항목은 `/<module>/<screen>`이다. 예: `/mdm/item`.
 
 `npm run build` 후 `npm run start`로 빌드 결과를 볼 수 있다.
 
@@ -29,7 +29,7 @@ npm run dev
 - 이 저장소의 에이전트 규칙은 `.cursor/rules/stack.mdc`이다.
 - 직접 의존성은 `next` 16.4.5, `react` 19.3.1, `react-dom` 19.3.1이다. 개발 의존성은 `typescript` 7.0.2, `@types/react` 19.3.0, `@types/react-dom` 19.3.0, `@types/node` 26.6.6이다. React 패키지에는 선언 파일이 없어 타입 패키지가 필요하다.
 - 데이터는 연결하지 않는다. Python 백엔드를 두지 않는다.
-- 화면은 `src/app`이다. 그 바로 아래는 레이아웃, 셸, 전역 스타일, `/` 진입만 둔다. 메뉴와 하위 페이지는 없다. 헤더 오른쪽과 풋 왼쪽에는 JL ERP System이 있다. 본문은 비어 있다.
+- 화면은 `src/app`이다. 그 바로 아래는 레이아웃, 셸, 전역 스타일, `/` 진입, 메뉴 버튼이다. 메뉴 정의는 `src/menu/catalog.ts`이다. 메뉴 항목 화면은 `src/app/[module]/[screen]/page.tsx` 하나가 그린다. 헤더 왼쪽은 메뉴 버튼이고 헤더 오른쪽과 풋 왼쪽에는 JL ERP System이 있다. `/` 본문은 비어 있다. 메뉴 화면은 제목과 설명만 있고 업무 화면은 아직 없다.
 - 헤더와 풋이 나뉜다. 풋에는 개발 시작일 2026년 11월 9일, 사용 도구 Cursor, 100% AI만으로 개발했다는 문구가 있다.
 - `src/ping.ts`의 `ping`은 화면이 아니라 타입 검사 샘플이다.
 - Geist 글꼴은 빌드할 때 한 번 받아 실행 화면에서 로컬로 쓴다.
