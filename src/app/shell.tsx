@@ -33,9 +33,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const menuId = useId();
   const inSubId = useId();
   const waveSubId = useId();
+  const invSubId = useId();
   const path = usePathname();
   const [inOpen, setInOpen] = useState(path.startsWith("/inbound"));
   const [waveOpen, setWaveOpen] = useState(path.startsWith("/wave"));
+  const [invOpen, setInvOpen] = useState(path.startsWith("/inventory"));
 
   modeRef.current = mode;
   hoverRef.current = canHover;
@@ -74,6 +76,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (path.startsWith("/inbound")) setInOpen(true);
     if (path.startsWith("/wave")) setWaveOpen(true);
+    if (path.startsWith("/inventory")) setInvOpen(true);
   }, [path]);
 
   useEffect(() => {
@@ -209,6 +212,28 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   onClick={closeToBtn}
                 >
                   주문 리스트
+                </Link>
+              </div>
+            </div>
+            <div className="menu-group">
+              <button
+                type="button"
+                className="menu-link menu-parent"
+                aria-expanded={invOpen}
+                aria-controls={invSubId}
+                onClick={() => setInvOpen((open) => !open)}
+              >
+                인벤토리
+                <span className="menu-caret" aria-hidden="true" />
+              </button>
+              <div className="menu-subs" id={invSubId} hidden={invOpen ? undefined : true}>
+                <Link
+                  className="menu-link menu-sub"
+                  href="/inventory/location"
+                  aria-current={path === "/inventory/location" ? "page" : undefined}
+                  onClick={closeToBtn}
+                >
+                  로케이션 정보
                 </Link>
               </div>
             </div>
