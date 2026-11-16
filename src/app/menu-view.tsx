@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { menuCatalog, screenPath, type MenuGroup } from "../menu/catalog";
 
@@ -16,6 +16,7 @@ function firstGroup(): MenuGroup {
 /** 헤더 왼쪽 메뉴 버튼과 메뉴 화면. */
 export function MenuView() {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [activeSlug, setActiveSlug] = useState(firstGroup().slug);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -106,7 +107,10 @@ export function MenuView() {
                               href={screenPath(group.slug, item.slug)}
                               title={item.title}
                               current={pathname === screenPath(group.slug, item.slug)}
-                              onNavigate={() => setOpen(false)}
+                              onNavigate={(href) => {
+                                router.push(href);
+                                setOpen(false);
+                              }}
                             />
                           </li>
                         ))}
@@ -122,7 +126,10 @@ export function MenuView() {
                       href={screenPath(activeGroup.slug, item.slug)}
                       title={item.title}
                       current={pathname === screenPath(activeGroup.slug, item.slug)}
-                      onNavigate={() => setOpen(false)}
+                      onNavigate={(href) => {
+                        router.push(href);
+                        setOpen(false);
+                      }}
                     />
                   </li>
                 ))}
@@ -144,10 +151,21 @@ function MenuLink({
   href: string;
   title: string;
   current: boolean;
-  onNavigate: () => void;
+  onNavigate: (href: string) => void;
 }) {
   return (
-    <Link href={href} className="menu-link" aria-current={current ? "page" : undefined} onClick={onNavigate}>
+    <Link
+      href={href}
+      className="menu-link"
+      aria-current={current ? "page" : undefined}
+      onClick={(event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+          return;
+        }
+        event.preventDefault();
+        onNavigate(href);
+      }}
+    >
       {title}
     </Link>
   );
