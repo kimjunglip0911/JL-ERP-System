@@ -5,7 +5,7 @@ import { RackBoard } from "./rack";
 export default function RackPage() {
   return (
     <>
-      <PageName name="랙 현황" />
+      <PageName name="빈랙 현황" />
       <RackBoard />
     </>
   );
