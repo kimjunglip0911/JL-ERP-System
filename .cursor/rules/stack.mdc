@@ -30,7 +30,7 @@ const nextConfig = {};
 
 ## Git
 
-- 원격은 `origin` 하나다. 주소는 `git@github.com:kimjunglip0911/kn-report-ex.git`이다.
+- 원격은 `origin` 하나다. 주소는 `git@github.com:kimjunglip0911/JL-ERP-System.git`이다.
 - 푸시는 이 SSH 주소로만 한다. 대상 브랜치는 `origin/master`다.
 - 브랜치는 `master` 하나만 둔다. 다른 브랜치를 만들거나 다른 이름으로 푸시하지 않는다.
 - 커밋은 로컬에서 만든 뒤 `git push`로 올린다. GitHub 웹 편집으로 커밋을 만들지 않는다.
