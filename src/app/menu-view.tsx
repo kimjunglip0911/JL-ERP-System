@@ -3,28 +3,26 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { menuCatalog, screenPath, type MenuGroup } from "../menu/catalog";
+import { menuCatalog, screenPath } from "../menu/catalog";
 
-function firstGroup(): MenuGroup {
-  const group = menuCatalog[0];
-  if (!group) {
-    throw new Error("메뉴 그룹이 없습니다");
-  }
-  return group;
+function groupForPath(pathname: string): string | null {
+  const group = menuCatalog.find((entry) =>
+    entry.items.some((item) => pathname === screenPath(entry.slug, item.slug)),
+  );
+  return group?.slug ?? null;
 }
 
-/** 헤더 왼쪽 메뉴 버튼과 메뉴 화면. */
+/** 헤더 왼쪽 메뉴 버튼과 접히는 메뉴 화면. */
 export function MenuView() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [activeSlug, setActiveSlug] = useState(firstGroup().slug);
+  const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
   const titleId = useId();
   const panelId = useId();
-  const activeGroup = menuCatalog.find((group) => group.slug === activeSlug) ?? firstGroup();
 
   useEffect(() => {
     if (!open) {
@@ -54,8 +52,12 @@ export function MenuView() {
       setOpen(false);
       return;
     }
-    setActiveSlug(firstGroup().slug);
+    setActiveSlug(groupForPath(pathname));
     setOpen(true);
+  }
+
+  function toggleGroup(slug: string) {
+    setActiveSlug((current) => (current === slug ? null : slug));
   }
 
   return (
@@ -86,21 +88,22 @@ export function MenuView() {
             <h2 id={titleId} className="menu-heading">
               메뉴
             </h2>
-            <div className="menu-columns">
-              <ul className="menu-groups">
-                {menuCatalog.map((group) => {
-                  const selected = group.slug === activeGroup.slug;
-                  return (
-                    <li key={group.slug}>
-                      <button
-                        type="button"
-                        className={selected ? "menu-group is-active" : "menu-group"}
-                        aria-expanded={selected}
-                        onClick={() => setActiveSlug(group.slug)}
-                      >
-                        {group.title}
-                      </button>
-                      <ul className="menu-items" hidden={!selected}>
+            <ul className="menu-groups">
+              {menuCatalog.map((group) => {
+                const selected = group.slug === activeSlug;
+                return (
+                  <li key={group.slug} className={selected ? "menu-block is-open" : "menu-block"}>
+                    <button
+                      type="button"
+                      className={selected ? "menu-group is-active" : "menu-group"}
+                      aria-expanded={selected}
+                      onClick={() => toggleGroup(group.slug)}
+                    >
+                      <span>{group.title}</span>
+                      <span className="menu-chevron" aria-hidden="true" />
+                    </button>
+                    <div className="menu-fold" inert={selected ? undefined : true}>
+                      <ul className="menu-items">
                         {group.items.map((item) => (
                           <li key={item.slug}>
                             <MenuLink
@@ -115,26 +118,11 @@ export function MenuView() {
                           </li>
                         ))}
                       </ul>
-                    </li>
-                  );
-                })}
-              </ul>
-              <ul className="menu-desk">
-                {activeGroup.items.map((item) => (
-                  <li key={item.slug}>
-                    <MenuLink
-                      href={screenPath(activeGroup.slug, item.slug)}
-                      title={item.title}
-                      current={pathname === screenPath(activeGroup.slug, item.slug)}
-                      onNavigate={(href) => {
-                        router.push(href);
-                        setOpen(false);
-                      }}
-                    />
+                    </div>
                   </li>
-                ))}
-              </ul>
-            </div>
+                );
+              })}
+            </ul>
           </div>
         </div>
       ) : null}
