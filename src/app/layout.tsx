@@ -11,8 +11,8 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "WMS Report",
-  description: "물류창고 레포트",
+  title: "JL ERP System",
+  description: "JL ERP System",
 };
 
 /** 루트 레이아웃. 본문은 셸만 감싼다. */

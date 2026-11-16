@@ -76,6 +76,11 @@ body {
   margin: 0;
 }
 
+/* 개발 표시가 왼쪽 이름을 가리지 않게 한다. */
+.footer-note:first-child {
+  margin-left: 40px;
+}
+
 @media (min-width: 768px) {
   .header,
   .footer {
