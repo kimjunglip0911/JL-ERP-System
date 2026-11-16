@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { HeadTitle } from "./head-title";
 import { MenuView } from "./menu-view";
 
 /** 헤더, 본문, 풋. */
@@ -7,6 +8,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="frame">
       <header className="header">
         <MenuView />
+        <HeadTitle />
         <p className="brand">JL ERP System</p>
       </header>
       <main className="main">{children}</main>
