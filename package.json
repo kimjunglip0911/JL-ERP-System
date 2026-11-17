@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/app/mdm/item/*.test.ts src/app/mdm/bom/*.test.ts"
+    "test": "node --experimental-strip-types --test src/app/mdm/item/*.test.ts src/app/mdm/bom/*.test.ts src/app/mdm/route/*.test.ts"
   },
   "devDependencies": {
     "@types/node": "26.6.6",

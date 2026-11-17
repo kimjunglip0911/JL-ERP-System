@@ -1,0 +1,222 @@
+/* 공정 및 작업장 화면. */
+
+.main:has(.route-desk) {
+  overflow: hidden;
+}
+
+.route-desk {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto auto auto minmax(140px, 0.8fr) minmax(180px, 1fr);
+  gap: 8px;
+  padding: 12px;
+  overflow: auto;
+}
+
+.route-toolbar,
+.route-tabs,
+.route-query,
+.route-grid,
+.route-form,
+.route-steps {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.route-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.route-actions,
+.route-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.route-actions button,
+.route-tabs button {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #d7dee8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.route-actions button.is-primary {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.route-tabs {
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.route-tabs button[aria-selected="true"] {
+  border-color: transparent;
+  border-bottom: 2px solid #1d4ed8;
+  border-radius: 8px 8px 0 0;
+  color: #1d4ed8;
+}
+
+.route-message {
+  margin: 0;
+  min-height: 1.2em;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.route-query,
+.route-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.route-query label,
+.route-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 140px;
+  flex: 1;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.route-query input,
+.route-query select,
+.route-form input,
+.route-form select,
+.route-steps input,
+.route-steps select {
+  height: 32px;
+  width: 100%;
+  padding: 0 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.route-form input:disabled {
+  background: #f4f6f9;
+  color: var(--muted);
+}
+
+.route-steps input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.route-grid,
+.route-steps {
+  min-height: 0;
+  overflow: auto;
+  border-radius: 12px;
+}
+
+.route-grid table,
+.route-steps table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.route-grid table {
+  min-width: 880px;
+}
+
+.route-steps table {
+  min-width: 1080px;
+}
+
+.route-grid caption,
+.route-steps caption {
+  padding: 16px;
+  color: var(--muted);
+  text-align: left;
+}
+
+.route-grid th,
+.route-steps th {
+  position: sticky;
+  top: 0;
+  padding: 8px 10px;
+  background: #f8fafc;
+  box-shadow: 0 1px 0 #e2e8f0;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: left;
+}
+
+.route-grid td,
+.route-steps td {
+  padding: 6px 8px;
+  border-top: 1px solid #eef2f6;
+}
+
+.route-grid tbody tr,
+.route-steps tbody tr {
+  cursor: pointer;
+}
+
+.route-grid tbody tr:hover td,
+.route-steps tbody tr:hover td {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.route-grid tr.is-selected td,
+.route-grid tr.is-selected:hover td,
+.route-steps tr.is-selected td,
+.route-steps tr.is-selected:hover td {
+  background: rgba(29, 78, 216, 0.1);
+}
+
+.route-grid td.is-stop {
+  color: var(--muted);
+}
+
+.route-sheet {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(120px, 1fr);
+  gap: 8px;
+}
+
+.route-desk button:focus-visible,
+.route-desk input:focus-visible,
+.route-desk select:focus-visible,
+.route-grid tbody tr:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .route-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
