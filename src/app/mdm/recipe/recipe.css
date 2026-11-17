@@ -1,0 +1,204 @@
+/* 제조 처방전 화면. */
+
+.main:has(.recipe-desk) {
+  overflow: hidden;
+}
+
+.recipe-desk {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(120px, 0.7fr) auto minmax(160px, 1fr);
+  gap: 8px;
+  padding: 12px;
+  overflow: auto;
+}
+
+.recipe-toolbar,
+.recipe-query,
+.recipe-grid,
+.recipe-form,
+.recipe-lines {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.recipe-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.recipe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.recipe-actions button {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #d7dee8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recipe-actions button.is-primary {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.recipe-message,
+.recipe-sum {
+  margin: 0;
+  min-height: 1.2em;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.recipe-sum {
+  padding: 8px 12px;
+  font-weight: 600;
+}
+
+.recipe-query,
+.recipe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.recipe-query label,
+.recipe-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 140px;
+  flex: 1;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.recipe-query input,
+.recipe-query select,
+.recipe-form input,
+.recipe-form select,
+.recipe-lines input {
+  height: 32px;
+  width: 100%;
+  padding: 0 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.recipe-form input:disabled {
+  background: #f4f6f9;
+  color: var(--muted);
+}
+
+.recipe-grid,
+.recipe-lines {
+  min-height: 0;
+  overflow: auto;
+  border-radius: 12px;
+}
+
+.recipe-grid table,
+.recipe-lines table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.recipe-grid table {
+  min-width: 760px;
+}
+
+.recipe-lines table {
+  min-width: 1080px;
+}
+
+.recipe-grid caption,
+.recipe-lines caption {
+  padding: 16px;
+  color: var(--muted);
+  text-align: left;
+}
+
+.recipe-grid th,
+.recipe-lines th {
+  position: sticky;
+  top: 0;
+  padding: 8px 10px;
+  background: #f8fafc;
+  box-shadow: 0 1px 0 #e2e8f0;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: left;
+}
+
+.recipe-grid td,
+.recipe-lines td {
+  padding: 6px 8px;
+  border-top: 1px solid #eef2f6;
+}
+
+.recipe-grid tbody tr,
+.recipe-lines tbody tr {
+  cursor: pointer;
+}
+
+.recipe-grid tbody tr:hover td,
+.recipe-lines tbody tr:hover td {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.recipe-grid tr.is-selected td,
+.recipe-grid tr.is-selected:hover td,
+.recipe-lines tr.is-selected td,
+.recipe-lines tr.is-selected:hover td {
+  background: rgba(29, 78, 216, 0.1);
+}
+
+.recipe-grid td.is-stop {
+  color: var(--muted);
+}
+
+.recipe-desk button:focus-visible,
+.recipe-desk input:focus-visible,
+.recipe-desk select:focus-visible,
+.recipe-grid tbody tr:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .recipe-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .recipe-form label.is-wide {
+    grid-column: 1 / -1;
+  }
+}
