@@ -6,9 +6,9 @@ type ScreenParams = { module: string; screen: string };
 
 export const dynamicParams = false;
 
-/** 카탈로그에 있는 화면만 정적 경로로 만든다. */
+/** 카탈로그에 있는 화면만 정적 경로로 만든다. 전용 페이지가 있는 경로는 뺀다. */
 export function generateStaticParams(): ScreenParams[] {
-  return listScreens();
+  return listScreens().filter((entry) => `${entry.module}/${entry.screen}` !== "mdm/item");
 }
 
 /** 브라우저 제목은 항목명과 시스템명이다. */
